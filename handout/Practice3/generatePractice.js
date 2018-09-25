@@ -50,16 +50,31 @@ function generate(testLengthArray){
     input = sort(input);
 
     let randomTarget = 0;
-    if(i == 0) {
-      randomTarget = input[0];
-    }
-    else if (i == 1) {
-      randomTarget = input[testLengthArray[i] -1];
+    if(testLengthArray.length > 3) {
+      if(i == 0) {
+        randomTarget = input[0];
+      }
+      else if(i == 1) {
+        randomTarget = input[testLengthArray[i] -1];
+      }
+      else if(i == 2) {
+        randomTarget = input[2];
+      }
+      else if(i == 3){
+        var temp = Math.floor(Math.random() * 20000) - 10000;
+        while(search(input, temp) != -1) {
+          temp = Math.floor(Math.random() * 20000) - 10000;
+        }
+        randomTarget = temp;
+      }
+      else {
+        randomTarget = Math.floor(Math.random() * 20000) - 10000;
+      }
     }
     else {
       randomTarget = Math.floor(Math.random() * 20000) - 10000;
     }
-
+    
     var output = search(input, randomTarget);
 
     var forPush = {"input": input, "target": randomTarget, "output": output};
